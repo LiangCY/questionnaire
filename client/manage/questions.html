@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>题库</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
+    <style>
+        .ui.container {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="ui container" id="main">
+    <a class="ui green button" href="/manage/question/add">添加</a>
+    <table class="ui celled table" v-if="questions.length>0">
+        <thead>
+        <tr>
+            <th>题目</th>
+            <th class="collapsing">类型</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="question in questions">
+            <td>
+                <a href="/manage/question/{{question._id}}">{{question.content}}</a>
+            </td>
+            <td class="collapsing" v-if="question.type==1">单选</td>
+            <td class="collapsing" v-if="question.type==2">多选</td>
+            <td class="collapsing" v-if="question.type==3">问答</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="ui message" v-else>
+        题库中没有题目
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
+<script src="/manage/js/questions.js"></script>
+</body>
+</html>
