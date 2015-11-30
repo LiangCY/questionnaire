@@ -58,6 +58,7 @@
         </div>
         <br>
         <button class="ui blue button" v-on:click="submit">保存</button>
+        <button class="ui red right floated button" v-on:click="deleteQuestion">删除题目</button>
     </div>
     <div class="ui error message" v-if="errorMessage">{{errorMessage}}</div>
 </div>

@@ -39,7 +39,6 @@ new Vue({
                     return response.json()
                 })
                 .then(function (json) {
-                    console.log(json);
                     if (json.success) {
                         self.options = self.options.filter(function (option) {
                             return option._id != json.option._id;
@@ -86,6 +85,21 @@ new Vue({
                         self.errorMessage = json.error;
                     } else {
                         notie.alert(1, '保存成功!', 1);
+                    }
+                });
+        },
+        deleteQuestion: function () {
+            var self = this;
+            fetch('/data/question/' + questionId, {method: 'delete'})
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (json) {
+                    if (!json.success) {
+                        self.errorMessage = json.error;
+                    } else {
+                        window.location.href='/manage/questions';
+                        history.replaceState('','','/manage/questions');
                     }
                 });
         }

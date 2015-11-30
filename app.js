@@ -19,6 +19,7 @@ app.post('/manage/question/add', Question.add);
 app.get('/data/questions', Question.list);
 app.get('/data/question/:question', Question.detail);
 app.post('/data/question/:question', Question.edit);
+app.delete('/data/question/:question', Question.delete);
 app.delete('/data/option/:option', Option.delete);
 
 app.use(function (req, res, next) {

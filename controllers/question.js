@@ -124,5 +124,34 @@ exports.edit = function (req, res) {
             success: true
         });
     });
+};
 
+exports.delete = function (req, res) {
+    var questionId = req.params.question;
+    Question.findByIdAndRemove(questionId, function (err, question) {
+        if (err) {
+            return res.json({
+                success: false,
+                error: err.message
+            });
+        }
+        if (!question) {
+            return res.json({
+                success: false,
+                error: 'Question not found'
+            });
+        }
+        Option.find({question: questionId})
+            .remove(function (err) {
+                if (err) {
+                    return res.json({
+                        success: false,
+                        error: err.message
+                    });
+                }
+                res.json({
+                    success: true
+                });
+            });
+    });
 };
