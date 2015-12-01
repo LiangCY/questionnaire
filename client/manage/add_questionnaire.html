@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加问卷</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
+    <style>
+        .ui.container {
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="ui container" id="main">
+    <div class="ui fluid input">
+        <input type="text" v-model="title" placeholder="问卷标题">
+    </div>
+    <table class="ui celled table" v-if="questions.length>0">
+        <thead>
+        <tr>
+            <th colspan="3">选择题目(已选{{questionsCount}})</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="question in questions">
+            <td class="collapsing">
+                <div class="ui checkbox">
+                    <input type="checkbox" v-model="question.selected" v-on:change="countQuestions"><label></label>
+                </div>
+            </td>
+            <td>{{question.content}}</td>
+            <td class="collapsing" v-if="question.type==1">单选</td>
+            <td class="collapsing" v-if="question.type==2">多选</td>
+            <td class="collapsing" v-if="question.type==3">问答</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="ui message" v-else>
+        题库中没有题目
+    </div>
+    <button class="ui button" v-on:click="addQuestionnaire">添加问卷</button>
+    <div class="ui error message" v-if="errorMessage">{{errorMessage}}</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
+<script src="/manage/js/add_questionnaire.js"></script>
+</body>
+</html>

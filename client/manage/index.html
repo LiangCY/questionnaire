@@ -12,22 +12,23 @@
 </head>
 <body>
 <div class="ui container" id="main">
-    <a class="ui green button" href="/manage/question/add">添加问卷</a>
-    <table class="ui celled table" v-if="questions.length>0">
+    <a class="ui green button" href="/manage/questionnaire/add">添加问卷</a>
+    <table class="ui celled table" v-if="questionnaires.length>0">
         <thead>
         <tr>
             <th>题目</th>
-            <th class="collapsing">类型</th>
+            <th class="collapsing">题目数</th>
+            <th class="collapsing">状态</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="question in questions">
+        <tr v-for="questionnaire in questionnaires">
             <td>
-                <a href="/manage/question/{{question._id}}">{{question.content}}</a>
+                <a href="/manage/questionnaire/{{questionnaire._id}}">{{questionnaire.title}}</a>
             </td>
-            <td class="collapsing" v-if="question.type==1">单选</td>
-            <td class="collapsing" v-if="question.type==2">多选</td>
-            <td class="collapsing" v-if="question.type==3">问答</td>
+            <td class="collapsing center aligned">{{questionnaire.questions.length}}</td>
+            <td class="collapsing" v-if="questionnaire.isPublished">已发布</td>
+            <td class="collapsing" v-else>未发布</td>
         </tr>
         </tbody>
     </table>

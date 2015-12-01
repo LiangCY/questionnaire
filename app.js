@@ -14,6 +14,8 @@ var Question = require('./controllers/question');
 var Option = require('./controllers/option');
 
 app.get('/manage', Questionnaire.listPage);
+app.get('/manage/questionnaire/add', Questionnaire.addPage);
+app.post('/manage/questionnaire/add', Questionnaire.add);
 app.get('/manage/questions', Question.listPage);
 app.get('/manage/question/add', Question.addPage);
 app.get('/manage/question/:question', Question.editPage);

@@ -9,22 +9,27 @@ exports.listPage = function (req, res) {
 };
 
 exports.addPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/add_question.html'));
+    res.sendFile(path.join(__dirname, '../client/manage/add_questionnaire.html'));
 };
 
 exports.add = function (req, res, next) {
-    var question = new Question(req.body);
-    question.save(function (err, question) {
+    var questionnaire = new Questionnaire(req.body);
+    questionnaire.save(function (err) {
         if (err) {
-            return next(err);
+            return res.json({
+                success: false,
+                error: err.message
+            });
         }
-        res.redirect('/manage/question/' + question._id);
+        res.json({
+            success: true
+        });
     });
 };
 
 exports.list = function (req, res) {
     Questionnaire.find()
-        .select('title isPublished publishAt deadline')
+        .select('title questions isPublished publishAt deadline')
         .exec(function (err, questionnaires) {
             if (err) {
                 return res.json({
