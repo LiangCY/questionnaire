@@ -16,7 +16,7 @@ var Questionnaire = mongoose.model('Questionnaire', new Schema({
         default: false
     },
     publishAt: Date,
-    deadline: Date
+    deadline: String
 }));
 
 module.exports = Questionnaire;

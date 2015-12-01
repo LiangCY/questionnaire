@@ -1,4 +1,5 @@
 var path = require('path');
+var moment = require('moment');
 var async = require('async');
 var _ = require('underscore');
 var Questionnaire = require('../models/questionnaire');
@@ -10,6 +11,10 @@ exports.listPage = function (req, res) {
 
 exports.addPage = function (req, res) {
     res.sendFile(path.join(__dirname, '../client/manage/add_questionnaire.html'));
+};
+
+exports.editPage = function (req, res) {
+    res.sendFile(path.join(__dirname, '../client/manage/edit_questionnaire.html'));
 };
 
 exports.add = function (req, res, next) {
@@ -45,74 +50,18 @@ exports.list = function (req, res) {
 };
 
 exports.detail = function (req, res) {
-    var questionId = req.params.question;
-    Question.findById(questionId)
-        .select('content type')
-        .exec(function (err, question) {
-            if (err) {
-                return res.json({
-                    success: false,
-                    error: err.message
-                });
-            }
-            if (!question) {
-                return res.json({
-                    success: false,
-                    error: 'Question not found'
-                });
-            }
-            Option.find({question: question})
-                .select('content')
-                .exec(function (err, options) {
-                    res.json({
-                        success: true,
-                        question: question,
-                        options: options
-                    });
-                });
-        });
-};
-
-exports.edit = function (req, res) {
-    var question = req.body.question;
-    var options = req.body.options;
-    async.series([
+    var questionnaireId = req.params.questionnaire;
+    async.parallel([
         function (callback) {
-            Question.findById(question._id)
-                .exec(function (err, _question) {
-                    if (_question) {
-                        var newQuestion = _.extend(_question, question);
-                        newQuestion.save(function (err, question) {
-                            callback(err, question);
-                        });
-                    }
-                })
+            Questionnaire.findById(questionnaireId)
+                .select('title type questions isPublished deadline')
+                .exec(function (err, questionnaire) {
+                    callback(err, questionnaire);
+                });
         },
         function (callback) {
-            async.each(options, function (option, callback) {
-                if (option._id) {
-                    Option.findOneAndUpdate({
-                        _id: option._id,
-                        question: question._id
-                    }, {
-                        $set: {
-                            content: option.content
-                        }
-                    }, function (err) {
-                        callback(err);
-                    });
-                } else {
-                    var newOption = new Option({
-                        content: option.content,
-                        question: question._id
-                    });
-                    newOption.save(function (err) {
-                        callback(err)
-                    });
-                }
-            }, function (err) {
-                callback(err);
-            });
+            Question.find().select('content type')
+                .exec(callback);
         }
     ], function (err, results) {
         if (err) {
@@ -121,29 +70,39 @@ exports.edit = function (req, res) {
                 error: err.message
             });
         }
+        var questionnaire = results[0];
+        if (!questionnaire) {
+            return res.json({
+                success: false,
+                error: 'Questionnaire not found'
+            });
+        }
         res.json({
-            success: true
+            success: true,
+            questionnaire: questionnaire,
+            questions: results[1]
         });
     });
 };
 
-exports.delete = function (req, res) {
-    var questionId = req.params.question;
-    Question.findByIdAndRemove(questionId, function (err, question) {
-        if (err) {
-            return res.json({
-                success: false,
-                error: err.message
-            });
-        }
-        if (!question) {
-            return res.json({
-                success: false,
-                error: 'Question not found'
-            });
-        }
-        Option.find({question: questionId})
-            .remove(function (err) {
+exports.edit = function (req, res) {
+    var questionnaire = req.body.questionnaire;
+    Questionnaire.findById(questionnaire._id)
+        .exec(function (err, _questionnaire) {
+            if (err) {
+                return res.json({
+                    success: false,
+                    error: err.message
+                });
+            }
+            if (!_questionnaire) {
+                return res.json({
+                    success: false,
+                    error: 'Questionnaire not found'
+                });
+            }
+            var newQuestionnaire = _.extend(_questionnaire, questionnaire);
+            newQuestionnaire.save(function (err) {
                 if (err) {
                     return res.json({
                         success: false,
@@ -152,7 +111,28 @@ exports.delete = function (req, res) {
                 }
                 res.json({
                     success: true
-                });
+                })
+            })
+        });
+};
+
+exports.delete = function (req, res) {
+    var questionnaireId = req.params.questionnaire;
+    Questionnaire.findByIdAndRemove(questionnaireId, function (err, questionnaire) {
+        if (err) {
+            return res.json({
+                success: false,
+                error: err.message
             });
+        }
+        if (!questionnaire) {
+            return res.json({
+                success: false,
+                error: 'Questionnaire not found'
+            });
+        }
+        res.json({
+            success: true
+        });
     });
 };

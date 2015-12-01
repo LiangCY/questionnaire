@@ -15,6 +15,7 @@
     "express": "^4.13.3",
     "jquery": "^2.1.4",
     "material-ui": "^0.13.1",
+    "moment": "^2.10.6",
     "mongoose": "^4.2.8",
     "react": "^0.14.2",
     "react-addons-create-fragment": "^0.14.2",
