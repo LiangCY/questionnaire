@@ -15,7 +15,7 @@ var Questionnaire = mongoose.model('Questionnaire', new Schema({
         type: Boolean,
         default: false
     },
-    publishAt: Date,
+    publishAt: String,
     deadline: String
 }));
 

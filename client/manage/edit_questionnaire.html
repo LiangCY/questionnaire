@@ -10,13 +10,14 @@
         .ui.container {
             padding-top: 2rem;
         }
-        .datetime{
+
+        .datetime {
             margin: 2rem 0;
         }
     </style>
 </head>
-<body>
-<div class="ui container" id="main">
+<body id="main">
+<div class="ui container" v-if="!questionnaire.isPublished">
     <div class="ui fluid input">
         <input type="text" v-model="questionnaire.title" placeholder="问卷标题">
     </div>
@@ -49,9 +50,38 @@
         </div>
     </div>
     <button class="ui blue button" v-on:click="saveQuestionnaire">保存</button>
-    <button class="ui green button">发布</button>
+    <button class="ui green button" v-on:click="publishQuestionnaire">发布</button>
     <button class="ui red right floated button" v-on:click="deleteQuestionnaire">删除问卷</button>
     <div class="ui error message" v-if="errorMessage">{{errorMessage}}</div>
+</div>
+<div class="ui container" v-else>
+    <h3 class="ui dividing header">{{questionnaire.title}} (已发布)</h3>
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th colspan="3">题目({{questionsCount}})</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="question in questions">
+            <td class="collapsing">
+                <div class="ui checkbox">
+                    <input type="checkbox" disabled v-model="question.selected"
+                           v-on:change="countQuestions"><label></label>
+                </div>
+            </td>
+            <td>{{question.content}}</td>
+            <td class="collapsing" v-if="question.type==1">单选</td>
+            <td class="collapsing" v-if="question.type==2">多选</td>
+            <td class="collapsing" v-if="question.type==3">问答</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="datetime">
+    <h4 class="ui header">
+        截止时间: {{questionnaire.deadline}}
+    </h4>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>

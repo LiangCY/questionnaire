@@ -17,6 +17,7 @@ app.get('/manage', Questionnaire.listPage);
 app.get('/manage/questionnaire/add', Questionnaire.addPage);
 app.post('/manage/questionnaire/add', Questionnaire.add);
 app.post('/manage/questionnaire/edit', Questionnaire.edit);
+app.post('/manage/questionnaire/publish', Questionnaire.publish);
 app.get('/manage/questionnaire/:questionnaire', Questionnaire.editPage);
 app.get('/manage/questions', Question.listPage);
 app.get('/manage/question/add', Question.addPage);

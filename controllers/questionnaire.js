@@ -116,6 +116,37 @@ exports.edit = function (req, res) {
         });
 };
 
+exports.publish = function (req, res) {
+    var questionnaire = req.body.questionnaire;
+    Questionnaire.findById(questionnaire._id)
+        .exec(function (err, _questionnaire) {
+            if (err) {
+                return res.json({
+                    success: false,
+                    error: err.message
+                });
+            }
+            if (!_questionnaire) {
+                return res.json({
+                    success: false,
+                    error: 'Questionnaire not found'
+                });
+            }
+            var newQuestionnaire = _.extend(_questionnaire, questionnaire);
+            newQuestionnaire.save(function (err) {
+                if (err) {
+                    return res.json({
+                        success: false,
+                        error: err.message
+                    });
+                }
+                res.json({
+                    success: true
+                })
+            })
+        });
+};
+
 exports.delete = function (req, res) {
     var questionnaireId = req.params.questionnaire;
     Questionnaire.findByIdAndRemove(questionnaireId, function (err, questionnaire) {
