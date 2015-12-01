@@ -1,11 +1,11 @@
 {
-  "name": "questionaire",
+  "name": "questionnaire",
   "version": "1.0.0",
-  "description": "questionaire system",
+  "description": "questionnaire system",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LiangCY/questionaire.git"
+    "url": "https://github.com/LiangCY/questionnaire.git"
   },
   "author": "lcy",
   "license": "ISC",

@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
     <style>
         .ui.container {
-            padding-top: 2rem;
+            padding-top: 1.5rem;
+        }
+
+        .ui.form {
+            margin-top: 1.5rem;
         }
     </style>
 </head>
 <body>
 <div class="ui container" id="question">
+    <a class="ui teal button" href="/manage/questions">返回题目列表</a>
+
     <div class="ui form">
         <div class="field">
             <label for="content">题目内容</label>
@@ -36,7 +42,7 @@
             <div class="field">
                 <div class="ui radio checkbox">
                     <input type="radio" id="answer" name="type" value="3" v-model="question.type">
-                    <label for="answer">填空</label>
+                    <label for="answer">问答</label>
                 </div>
             </div>
         </div>

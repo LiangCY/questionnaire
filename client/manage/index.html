@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>题库</title>
+    <title>问卷管理</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
     <style>
         .ui.container {
@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="ui container" id="main">
-    <a class="ui green button" href="/manage/question/add">添加题目</a>
+    <a class="ui green button" href="/manage/question/add">添加问卷</a>
     <table class="ui celled table" v-if="questions.length>0">
         <thead>
         <tr>
@@ -32,11 +32,11 @@
         </tbody>
     </table>
     <div class="ui message" v-else>
-        题库中没有题目
+        未找到问卷
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
-<script src="/manage/js/questions.js"></script>
+<script src="/manage/js/questionnaires.js"></script>
 </body>
 </html>
