@@ -64,7 +64,7 @@ var Page = React.createClass({
                 return;
             }
         }
-        console.log(this.state.answers);
+        this.props.onSubmit(this.state.answers);
     },
     render: function () {
         var self = this;

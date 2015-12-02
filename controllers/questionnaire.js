@@ -209,3 +209,8 @@ exports.indexData = function (req, res) {
             });
         });
 };
+
+exports.submit = function (req, res) {
+    var questionnaire = req.params.questionnaire;
+    var answer = req.body.answer;
+};

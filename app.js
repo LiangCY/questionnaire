@@ -33,6 +33,7 @@ app.delete('/data/question/:question', Question.delete);
 app.delete('/data/option/:option', Option.delete);
 
 app.get('/questionnaire/:questionnaire', Questionnaire.indexPage);
+app.post('/questionnaire/:questionnaire', Questionnaire.submit);
 app.get('/user/questionnaire/:questionnaire', Questionnaire.indexData);
 
 app.use(function (req, res, next) {

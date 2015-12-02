@@ -26,8 +26,23 @@ var App = React.createClass({
             questions: []
         };
     },
+    handleSubmit: function (answer) {
+        $.ajax({
+            type: 'post',
+            data: {
+                answer: JSON.stringify(answer)
+            },
+            success: function (data) {
+                if (data.success) {
+
+                }
+            }
+        });
+    },
     render: function () {
-        return <Page title={this.state.title} questions={this.state.questions}/>;
+        return <Page title={this.state.title}
+                     questions={this.state.questions}
+                     onSubmit={this.handleSubmit}/>;
     }
 });
 
