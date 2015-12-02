@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷管理</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
+    <style>
+        .ui.container {
+            padding-top: 1.5rem;
+        }
+
+        .question {
+            height: 400px;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body id="main">
+<div class="ui container" v-cloak>
+    <h2 class="ui header">{{questionnaire.title}}</h2>
+
+    <div v-for="question in questionnaire.questions">
+        <div class="question" id="{{question._id}}"></div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="/manage/js/statistics.js"></script>
+</body>
+</html>
