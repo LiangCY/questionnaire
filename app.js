@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 var Questionnaire = require('./controllers/questionnaire');
 var Question = require('./controllers/question');
 var Option = require('./controllers/option');
+var Answer = require('./controllers/answer');
 
 app.get('/manage', Questionnaire.listPage);
 app.get('/manage/questionnaire/add', Questionnaire.addPage);
@@ -32,9 +33,11 @@ app.delete('/data/questionnaire/:questionnaire', Questionnaire.delete);
 app.delete('/data/question/:question', Question.delete);
 app.delete('/data/option/:option', Option.delete);
 
-app.get('/questionnaire/:questionnaire', Questionnaire.indexPage);
-app.post('/questionnaire/:questionnaire', Questionnaire.submit);
-app.get('/user/questionnaire/:questionnaire', Questionnaire.indexData);
+app.get('/questionnaire/:questionnaire', Answer.indexPage);
+app.post('/questionnaire/:questionnaire', Answer.submit);
+app.get('/user/questionnaire/:questionnaire', Answer.questionnaireData);
+app.get('/result/:questionnaire', Answer.resultPage);
+app.get('/statistics/:questionnaire', Answer.statistics);
 
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

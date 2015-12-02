@@ -34,7 +34,7 @@ var App = React.createClass({
             },
             success: function (data) {
                 if (data.success) {
-
+                    window.location.href = '/result/' + questionnaireId;
                 }
             }
         });
