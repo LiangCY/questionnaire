@@ -18,18 +18,22 @@ new Vue({
                         var data = [{
                             type: 'bar',
                             x: question.options.map(function (option) {
-                                return option.count;
-                            }),
-                            y: question.options.map(function (option) {
-                                return option.content;
-                            }),
+                                    return option.count;
+                                })
+                                .reverse(),
+                            y: question.options.map(function (option, index) {
+                                    return '选项' + (index + 1);
+                                })
+                                .reverse(),
+                            text: question.options.map(function (option) {
+                                    return option.content
+                                })
+                                .reverse(),
+                            hoverinfo: 'x+text',
                             orientation: 'h'
                         }];
-                        var layout =  {
-                            title: question.content
-                        };
                         setTimeout(function () {
-                            Plotly.newPlot(question._id, data,layout,{displayModeBar: false});
+                            Plotly.newPlot(question._id, data, null, {displayModeBar: false});
                         }, 100);
                     });
                 } else {

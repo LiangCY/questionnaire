@@ -10,7 +10,7 @@
         }
 
         .question {
-            height: 400px;
+            height: 320px;
         }
 
         [v-cloak] {
@@ -20,10 +20,22 @@
 </head>
 <body id="main">
 <div class="ui container" v-cloak>
-    <h2 class="ui header">{{questionnaire.title}}</h2>
+    <h2 class="ui dividing blue header">{{questionnaire.title}}</h2>
 
-    <div v-for="question in questionnaire.questions">
-        <div class="question" id="{{question._id}}"></div>
+    <div class="ui list">
+        <div class="item" v-for="question in questionnaire.questions">
+            <div class="content">
+            <div class="header">{{question.content}}</div>
+
+            <div class="ui list">
+                <div class="item" v-for="(index,option) in question.options">
+                    {{'选项'+(index+1)+'：'+option.content}}
+                </div>
+            </div>
+            </div>
+            <div class="question" id="{{question._id}}"></div>
+            <div class="ui divider"></div>
+        </div>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
