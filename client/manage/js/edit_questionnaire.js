@@ -1,6 +1,5 @@
 var url = location.href;
 var questionnaireId = url.substring(url.lastIndexOf('/') + 1);
-$('#deadline').datetimepicker({step: 5});
 new Vue({
     el: '#main',
     data: {
@@ -40,6 +39,9 @@ new Vue({
             .catch(function (ex) {
                 console.log('parsing failed', ex)
             });
+    },
+    attached: function () {
+        $('#deadline').datetimepicker({step: 5});
     },
     methods: {
         countQuestions: function () {
