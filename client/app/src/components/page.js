@@ -4,7 +4,6 @@ var _ = require('underscore');
 var $ = require('jquery');
 var Title = require('./title');
 var Question = require('./question');
-var data = require('../data');
 
 var Page = React.createClass({
     getInitialState: function () {

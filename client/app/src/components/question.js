@@ -37,7 +37,7 @@ var Question = React.createClass({
                         <RadioButton
                             key={option._id}
                             value={option._id}
-                            label={option.label}
+                            label={option.content}
                             style={{marginBottom:12}}/>
                     );
                 });
@@ -54,7 +54,7 @@ var Question = React.createClass({
                         <Checkbox
                             key={option._id}
                             value={option._id}
-                            label={option.label}
+                            label={option.content}
                             style={{marginBottom:12}}
                             onCheck={this.handleCheck}/>
                     );

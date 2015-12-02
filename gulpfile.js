@@ -13,11 +13,11 @@ gulp.task('jsx', function () {
         .pipe(source('index.js'))
         .pipe(streamify(uglify()))
         .pipe(rename('app.js'))
-        .pipe(gulp.dest('./client/dist'));
+        .pipe(gulp.dest('./client/app/dist'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['client/src/**/*'], ['jsx']);
+    gulp.watch(['client/app/src/**/*'], ['jsx']);
 });
 
 gulp.task('serve', function () {

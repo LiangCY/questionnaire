@@ -41,7 +41,7 @@ new Vue({
             });
     },
     attached: function () {
-        $('#deadline').datetimepicker({step: 5});
+        $('#deadline').datetimepicker({step: 10});
     },
     methods: {
         countQuestions: function () {

@@ -32,6 +32,9 @@ app.delete('/data/questionnaire/:questionnaire', Questionnaire.delete);
 app.delete('/data/question/:question', Question.delete);
 app.delete('/data/option/:option', Option.delete);
 
+app.get('/questionnaire/:questionnaire', Questionnaire.indexPage);
+app.get('/user/questionnaire/:questionnaire', Questionnaire.indexData);
+
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
