@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
+    <style>
+        form.ui.form {
+            width: 400px;
+            margin: 4rem auto;
+        }
+    </style>
+</head>
+<body>
+<div class="ui container">
+    <form class="ui form" method="post">
+        <div class="field">
+            <label for="username">用户名</label>
+            <input id="username" type="text" name="username" required>
+        </div>
+        <div class="field">
+            <label for="password">密码</label>
+            <input id="password" type="password" name="password" required>
+        </div>
+        <input class="ui green fluid button" type="submit" value="登录"/>
+    </form>
+</div>
+</body>
+</html>
