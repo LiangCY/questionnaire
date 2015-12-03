@@ -9,7 +9,7 @@ new Vue({
     },
     ready: function () {
         var self = this;
-        fetch('/data/questions')
+        fetch('/data/questions', {credentials: 'same-origin'})
             .then(function (response) {
                 return response.json()
             })
@@ -45,6 +45,7 @@ new Vue({
             var self = this;
             this.adding = true;
             fetch('/manage/questionnaire/add', {
+                credentials: 'same-origin',
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',

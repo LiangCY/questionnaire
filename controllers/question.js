@@ -5,15 +5,15 @@ var Question = require('../models/question');
 var Option = require('../models/option');
 
 exports.listPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/questions.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/questions.html'));
 };
 
 exports.addPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/add_question.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/add_question.html'));
 };
 
 exports.editPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/edit_question.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/edit_question.html'));
 };
 
 exports.add = function (req, res, next) {

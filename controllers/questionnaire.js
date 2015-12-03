@@ -7,15 +7,15 @@ var Question = require('../models/question');
 var Option = require('../models/option');
 
 exports.listPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/index.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/index.html'));
 };
 
 exports.addPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/add_questionnaire.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/add_questionnaire.html'));
 };
 
 exports.editPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/edit_questionnaire.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/edit_questionnaire.html'));
 };
 
 exports.add = function (req, res, next) {

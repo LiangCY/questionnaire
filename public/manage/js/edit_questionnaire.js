@@ -11,7 +11,7 @@ new Vue({
     },
     ready: function () {
         var self = this;
-        fetch('/data/questionnaire/' + questionnaireId)
+        fetch('/data/questionnaire/' + questionnaireId, {credentials: 'same-origin'})
             .then(function (response) {
                 return response.json()
             })
@@ -70,6 +70,7 @@ new Vue({
                 return question._id;
             });
             fetch('/manage/questionnaire/edit', {
+                credentials: 'same-origin',
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -109,6 +110,7 @@ new Vue({
             });
             this.questionnaire.isPublished = true;
             fetch('/manage/questionnaire/publish', {
+                credentials: 'same-origin',
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -132,7 +134,10 @@ new Vue({
         },
         deleteQuestionnaire: function () {
             var self = this;
-            fetch('/data/questionnaire/' + questionnaireId, {method: 'delete'})
+            fetch('/data/questionnaire/' + questionnaireId, {
+                credentials: 'same-origin',
+                method: 'delete'
+            })
                 .then(function (response) {
                     return response.json()
                 })

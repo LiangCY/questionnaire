@@ -7,7 +7,7 @@ var Option = require('../models/option');
 var Answer = require('../models/answer');
 
 exports.indexPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/app/index.html'));
+    res.sendFile(path.join(__dirname, '../view/app/index.html'));
 };
 
 exports.questionnaireData = function (req, res) {
@@ -63,7 +63,7 @@ exports.submit = function (req, res) {
 };
 
 exports.resultPage = function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/manage/statistics.html'));
+    res.sendFile(path.join(__dirname, '../view/manage/statistics.html'));
 };
 
 exports.statistics = function (req, res) {

@@ -6,7 +6,7 @@ new Vue({
     data: {questionnaire: {}},
     ready: function () {
         var self = this;
-        fetch('/statistics/' + questionnaireId)
+        fetch('/statistics/' + questionnaireId, {credentials: 'same-origin'})
             .then(function (response) {
                 return response.json()
             })

@@ -9,13 +9,13 @@
             padding-top: 1.5rem;
         }
 
-        [v-cloak] {
+        .ui.container[v-cloak] {
             display: none;
         }
     </style>
 </head>
 <body id="main">
-<div class="ui container" v-cloak>
+<div class="ui container"  v-cloak>
     <h2 class="ui dividing blue header">{{questionnaire.title}}</h2>
 
     <div v-for="(index,question) in questionnaire.questions">

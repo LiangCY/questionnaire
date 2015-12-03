@@ -1,16 +1,16 @@
 new Vue({
     el: '#main',
     data: {
-        questions: []
+        questionnaires: []
     },
     ready: function () {
         var self = this;
-        fetch('/data/questions')
+        fetch('/data/questionnaires', {credentials: 'same-origin'})
             .then(function (response) {
                 return response.json()
             })
             .then(function (json) {
-                self.questions = json.questions;
+                self.questionnaires = json.questionnaires;
             })
             .catch(function (ex) {
                 console.log('parsing failed', ex)

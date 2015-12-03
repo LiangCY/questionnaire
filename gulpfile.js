@@ -7,24 +7,24 @@ var rename = require('gulp-rename');
 var nodemon = require('gulp-nodemon');
 
 gulp.task('jsx', function () {
-    browserify(['./client/app/src/app.js'])
+    browserify(['./public/app/src/app.js'])
         .transform('babelify', {presets: ["react"]})
         .bundle()
         .pipe(source('index.js'))
         .pipe(streamify(uglify()))
         .pipe(rename('app.js'))
-        .pipe(gulp.dest('./client/app/dist'));
+        .pipe(gulp.dest('./public/app/dist'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['client/app/src/**/*'], ['jsx']);
+    gulp.watch(['public/app/src/**/*'], ['jsx']);
 });
 
 gulp.task('serve', function () {
     nodemon({
         script: 'app.js',
         ext: 'js',
-        ignore: ['client/**/*'],
+        ignore: ['public/**/*'],
         env: {'NODE_ENV': 'development'}
     })
 });

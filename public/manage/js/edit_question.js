@@ -10,7 +10,7 @@ new Vue({
     },
     ready: function () {
         var self = this;
-        fetch('/data/question/' + questionId)
+        fetch('/data/question/' + questionId, {credentials: 'same-origin'})
             .then(function (response) {
                 return response.json()
             })
@@ -34,7 +34,10 @@ new Vue({
                 return;
             }
             var self = this;
-            fetch('/data/option/' + option._id, {method: 'delete'})
+            fetch('/data/option/' + option._id, {
+                credentials: 'same-origin',
+                method: 'delete'
+            })
                 .then(function (response) {
                     return response.json()
                 })
@@ -66,6 +69,7 @@ new Vue({
             this.saving = true;
             var self = this;
             fetch('/data/question/' + questionId, {
+                credentials: 'same-origin',
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -90,7 +94,10 @@ new Vue({
         },
         deleteQuestion: function () {
             var self = this;
-            fetch('/data/question/' + questionId, {method: 'delete'})
+            fetch('/data/question/' + questionId, {
+                credentials: 'same-origin',
+                method: 'delete'
+            })
                 .then(function (response) {
                     return response.json()
                 })
@@ -98,8 +105,8 @@ new Vue({
                     if (!json.success) {
                         self.errorMessage = json.error;
                     } else {
-                        window.location.href='/manage/questions';
-                        history.replaceState('','','/manage/questions');
+                        window.location.href = '/manage/questions';
+                        history.replaceState('', '', '/manage/questions');
                     }
                 });
         }
