@@ -21,7 +21,7 @@
     <div v-for="(index,question) in questionnaire.questions">
         <h3 class="ui header">{{(index+1)+'. '+question.content}}</h3>
 
-        <div class="ui grid">
+        <div class="ui grid" v-if="question.type==1||question.type==2">
             <div class="six wide right aligned column">
                 <div class="row">
                     <div :style="{height: question.options.length * 50 +'px',marginTop: '21px'}">
@@ -37,6 +37,11 @@
             </div>
             <div class="eight wide column">
                 <div class="row" id="{{question._id}}"></div>
+            </div>
+        </div>
+        <div class="ui list" v-if="question.type==3">
+            <div class="item" v-for="reply in question.replies">
+                {{reply}}
             </div>
         </div>
         <div class="ui divider"></div>

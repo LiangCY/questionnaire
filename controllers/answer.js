@@ -90,12 +90,28 @@ exports.statistics = function (req, res) {
                             callback(err);
                         });
                 } else if (question.type == 2) {
-                    callback(err);
+                    Option.find({question: question._id})
+                        .select('content')
+                        .lean()
+                        .exec(function (err, options) {
+                            options.forEach(function (option) {
+                                option.count = 0;
+                            });
+                            question.options = options;
+                            callback(err);
+                        });
                 } else {
+                    question.replies = [];
                     callback(err);
                 }
             }, function (err) {
-                Answer.find(questionnaireId)
+                if (err) {
+                    return res.json({
+                        success: false,
+                        error: err.message
+                    });
+                }
+                Answer.find({questionnaire:questionnaireId})
                     .select('content')
                     .exec(function (err, answers) {
                         async.each(answers, function (_answer, callback) {
@@ -105,12 +121,31 @@ exports.statistics = function (req, res) {
                                     for (var i = 0, len = questions.length; i < len; i++) {
                                         var question = questions[i];
                                         if (question._id == questionId) {
-                                            var optionId = answer[questionId];
-                                            for (var j = 0, l = question.options.length; j < l; j++) {
-                                                var option = question.options[j];
-                                                if (option._id == optionId) {
-                                                    option.count++;
-                                                    break;
+                                            if (question.type == 1) {
+                                                var optionId = answer[questionId];
+                                                for (var j = 0, l = question.options.length; j < l; j++) {
+                                                    var option = question.options[j];
+                                                    if (option._id == optionId) {
+                                                        option.count++;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (question.type == 2) {
+                                                var options = answer[questionId];
+                                                options.forEach(function (optionId) {
+                                                    for (var j = 0, l = question.options.length; j < l; j++) {
+                                                        var option = question.options[j];
+                                                        if (option._id == optionId) {
+                                                            option.count++;
+                                                            break;
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                            if (question.type == 3) {
+                                                if (answer[questionId] != '') {
+                                                    question.replies.push(answer[questionId]);
                                                 }
                                             }
                                             break;
@@ -124,7 +159,7 @@ exports.statistics = function (req, res) {
                                 return res.json({
                                     success: false,
                                     error: err.message
-                                })
+                                });
                             }
                             return res.json({
                                 success: true,

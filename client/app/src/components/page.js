@@ -9,9 +9,9 @@ var Page = React.createClass({
     getInitialState: function () {
         return {answers: {}}
     },
-    componentDidMount: function () {
+    componentWillReceiveProps: function (nextProps) {
         var answers = _.clone(this.state.answers);
-        this.props.questions.forEach(function (question) {
+        nextProps.questions.forEach(function (question) {
             switch (question.type) {
                 case 0:
                     answers[question._id] = '';

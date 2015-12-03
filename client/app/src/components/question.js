@@ -23,14 +23,6 @@ var Question = React.createClass({
     render: function () {
         var answerArea;
         switch (this.props.question.type) {
-            case 0:
-                answerArea =
-                    <div>
-                        <TextField hintText={this.props.question.hint}
-                                   fullWidth={true}
-                                   onChange={this.handleInput}/>
-                    </div>;
-                break;
             case 1:
                 var options = this.props.question.options.map(function (option, i) {
                     return (
@@ -60,6 +52,14 @@ var Question = React.createClass({
                     );
                 }.bind(this));
                 answerArea = <div>{options}</div>;
+                break;
+            case 3:
+                answerArea =
+                    <div>
+                        <TextField hintText={this.props.question.hint}
+                                   fullWidth={true}
+                                   onChange={this.handleInput}/>
+                    </div>;
                 break;
         }
         if (this.props.question.type == 1 && !this.props.answer ||

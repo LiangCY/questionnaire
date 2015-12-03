@@ -41,7 +41,7 @@ new Vue({
                                 size: 14
                             },
                             autosize: false,
-                            height: question.options.length * 50 +40,
+                            height: question.options.length * 50 + 40,
                             margin: {
                                 l: 50,
                                 r: 50,
