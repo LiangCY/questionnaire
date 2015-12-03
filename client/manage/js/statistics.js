@@ -15,6 +15,10 @@ new Vue({
                     self.questionnaire = json.questionnaire;
                     var questions = self.questionnaire.questions;
                     questions.forEach(function (question) {
+                        var optionsCount = 0;
+                        question.options.forEach(function (option) {
+                            optionsCount += option.count;
+                        });
                         var data = [{
                             type: 'bar',
                             x: question.options.map(function (option) {
@@ -26,14 +30,28 @@ new Vue({
                                 })
                                 .reverse(),
                             text: question.options.map(function (option) {
-                                    return option.content
+                                    return option.content + (Math.round(option.count / optionsCount * 100) + '%');
                                 })
                                 .reverse(),
-                            hoverinfo: 'x+text',
+                            hoverinfo: 'text',
                             orientation: 'h'
                         }];
+                        var layout = {
+                            font: {
+                                size: 14
+                            },
+                            autosize: false,
+                            height: question.options.length * 50 +40,
+                            margin: {
+                                l: 50,
+                                r: 50,
+                                b: 20,
+                                t: 20,
+                                pad: 4
+                            }
+                        };
                         setTimeout(function () {
-                            Plotly.newPlot(question._id, data, null, {displayModeBar: false});
+                            Plotly.newPlot(question._id, data, layout, {displayModeBar: false});
                         }, 100);
                     });
                 } else {
