@@ -2,6 +2,8 @@
 
 基于Express框架的问卷调查系统，问卷题目可包含单选、多选和问答。可以实现编辑问题、建立题库、发布问卷、统计结果等功能。
 
+[Live Demo](http://questionnaire.chinacloudsites.cn/questionnaire/566455a69c390da81276246f)
+
 ## 部分截图
 
 - 问卷页面
