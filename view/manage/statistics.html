@@ -28,7 +28,7 @@
                         <div v-for="(index,option) in question.options">
                             <div :style="{height: '50px'}">
                                 <div :style="{position:'relative',top:'50%',transform:'translateY(-50%)'}">
-                                    {{option.content}}
+                                    {{option.content}}({{question.optionsCount==0?0:(Math.round(option.count / question.optionsCount * 100) + '%')}})
                                 </div>
                             </div>
                         </div>

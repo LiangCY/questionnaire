@@ -19,6 +19,7 @@ new Vue({
                         question.options.forEach(function (option) {
                             optionsCount += option.count;
                         });
+                        question.optionsCount = optionsCount;
                         var data = [{
                             type: 'bar',
                             x: question.options.map(function (option) {
@@ -30,7 +31,7 @@ new Vue({
                                 })
                                 .reverse(),
                             text: question.options.map(function (option) {
-                                    return option.content + (Math.round(option.count / optionsCount * 100) + '%');
+                                    return option.content;
                                 })
                                 .reverse(),
                             hoverinfo: 'text',
