@@ -150,10 +150,5 @@ new Vue({
                     }
                 });
         }
-    },
-    computed: {
-        fu: function (question) {
-            console.log(question._id);
-        }
     }
 });
