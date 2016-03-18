@@ -9,13 +9,17 @@
             padding-top: 1.5rem;
         }
 
+        .ui.container[v-cloak] {
+            display: none;
+        }
+
         .ui.form {
             margin-top: 1.5rem;
         }
     </style>
 </head>
 <body>
-<div class="ui container" id="question">
+<div class="ui container" id="question" v-cloak>
     <a class="ui teal button" href="/manage/questions">返回题目列表</a>
 
     <div class="ui form">

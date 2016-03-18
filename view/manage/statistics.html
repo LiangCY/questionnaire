@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>问卷管理</title>
+    <title>统计数据</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
     <style>
         .ui.container {
@@ -17,7 +17,6 @@
 <body id="main">
 <div class="ui container"  v-cloak>
     <h2 class="ui dividing blue header">{{questionnaire.title}}</h2>
-
     <div v-for="(index,question) in questionnaire.questions">
         <h3 class="ui header">{{(index+1)+'. '+question.content}}</h3>
 

@@ -8,10 +8,13 @@
         .ui.container {
             padding-top: 1.5rem;
         }
+        .ui.container[v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 <body>
-<div class="ui container" id="main">
+<div class="ui container" id="main" v-cloak>
     <a class="ui green button" href="/manage/question/add">添加题目</a>
     <table class="ui celled table" v-if="questions.length>0">
         <thead>

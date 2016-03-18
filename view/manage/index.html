@@ -8,10 +8,14 @@
         .ui.container {
             padding-top: 1.5rem;
         }
+
+        .ui.container[v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 <body>
-<div class="ui container" id="main">
+<div class="ui container" id="main" v-cloak>
     <a class="ui green button" href="/manage/questionnaire/add">添加问卷</a>
     <a class="ui blue button" href="/manage/questions">题库</a>
     <a class="ui orange right floated button" href="/manage/logout">注销</a>

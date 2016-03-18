@@ -8,10 +8,14 @@
         .ui.container {
             padding-top: 2rem;
         }
+
+        .ui.container[v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 <body>
-<div class="ui container" id="main">
+<div class="ui container" id="main" v-cloak>
     <div class="ui fluid input">
         <input type="text" v-model="title" placeholder="问卷标题">
     </div>
