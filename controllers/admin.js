@@ -2,6 +2,12 @@ var path = require('path');
 var CryptoJS = require("crypto-js");
 var Admin = require('../models/admin');
 
+exports.homePage = function (req, res) {
+    Admin.count({}).exec(function (err, count) {
+        res.redirect('/manage/login');
+    })
+};
+
 exports.loginPage = function (req, res) {
     Admin.count({}).exec(function (err, count) {
         if (count == 0) {
