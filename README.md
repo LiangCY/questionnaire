@@ -4,8 +4,9 @@
 
 ## Install
 ### 环境依赖
-* nodejs
-* mongodb
+* Node.js
+* mongoDB
+
 ### Run
 ``` bash
 git clone https://github.com/lingyfh/questionnaire.git
