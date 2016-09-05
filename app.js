@@ -5,13 +5,13 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://lcy:lcy@localhost/questionnaire');
+mongoose.connect('mongodb://localhost/questionnaire');
 
 app.use(session({
     secret: 'questionnaire',
     cookie: {maxAge: 1000 * 60 * 60 * 3},
     store: new MongoStore({
-        url: 'mongodb://lcy:lcy@localhost/questionnaire',
+        url: 'mongodb://localhost/questionnaire',
         collection: 'sessions'
     }),
     resave: true,
@@ -27,6 +27,8 @@ var Option = require('./controllers/option');
 var Answer = require('./controllers/answer');
 var Admin = require('./controllers/admin');
 
+
+app.get('/', Admin.homePage);
 app.get('/manage/login', Admin.loginPage);
 app.post('/manage/login', Admin.login);
 app.get('/manage/logout', Admin.loginRequired, Admin.logout);
@@ -67,4 +69,5 @@ app.use(function (err, req, res, next) {
 });
 
 var port = process.env.PORT || 8080;
+console.log('listen port ======== ' + port)
 app.listen(port);
