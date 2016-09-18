@@ -9,7 +9,7 @@
 
 ### Run
 ``` bash
-git clone https://github.com/lingyfh/questionnaire.git
+git clone https://github.com/LiangCY/questionnaire.git
 cd questionnaire
 npm install
 node app.js
